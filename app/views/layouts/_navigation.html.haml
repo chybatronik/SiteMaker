@@ -9,7 +9,9 @@
         %span.icon-bar
       = link_to 'Home', root_path, class: 'navbar-brand'
     .collapse.navbar-collapse
-      %ul.nav.navbar-nav
-        = render 'layouts/navigation_links'
+      %ul.nav.navbar-nav.navbar-left
+        = render 'layouts/general_navigation_links'
+      %ul.nav.navbar-nav.navbar-right
+        = render 'layouts/user_navigation_links'
 
 
