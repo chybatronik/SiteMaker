@@ -1,0 +1,24 @@
+common: &common
+  adapter: postgresql
+  host: localhost
+  encoding: utf8
+  pool: 5
+  timeout: 5000
+
+development:
+  database: <%= ENV['DEV_DATABASE_NAME'] %>
+  username: <%= ENV['DEV_DATABASE_USERNAME'] %>
+  password: <%= ENV['DEV_DATABASE_PASSWORD'] %>
+  <<: *common
+
+test:
+  database: <%= ENV['TEST_DATABASE_NAME'] %>
+  username: <%= ENV['TEST_DATABASE_USERNAME'] %>
+  password: <%= ENV['TEST_DATABASE_PASSWORD'] %>
+  <<: *common
+  
+production:
+  database: <%= ENV['PROD_DATABASE_NAME'] %>
+  username: <%= ENV['PROD_DATABASE_USERNAME'] %>
+  password: <%= ENV['PROD_DATABASE_PASSWORD'] %>
+  <<: *common
