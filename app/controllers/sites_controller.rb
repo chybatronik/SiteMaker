@@ -4,7 +4,8 @@ class SitesController < ApplicationController
   # GET /sites
   # GET /sites.json
   def index
-    @sites = Site.all
+     @sites = Site.all if current_user.has_role :admin
+     @sites = current_user.sites unless current_user.has_role :admin
   end
 
   # GET /sites/1
@@ -14,7 +15,7 @@ class SitesController < ApplicationController
 
   # GET /sites/new
   def new
-    @site = Site.new
+    @site = current_user.sites.new
   end
 
   # GET /sites/1/edit
