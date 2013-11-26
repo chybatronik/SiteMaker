@@ -2,5 +2,11 @@
   - if current_user.has_role? :admin 
     %li= link_to 'Admin', users_path 
 
-
+  %li.dropdown
+    %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+      Jekyll 
+      %span.caret
+    %ul.dropdown-menu
+      %li
+        %a{:href => "/create"} Create 
 

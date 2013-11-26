@@ -5,10 +5,10 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  after_create :assign_reader_role
+  #after_create :assign_reader_role
 
-  private
-   def assign_reader_role
-    self.add_role "user"
-  end
+  #private
+   #def assign_reader_role
+    #self.add_role "user"
+  #end
 end

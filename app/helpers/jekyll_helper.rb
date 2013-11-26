@@ -1,0 +1,2 @@
+module JekyllHelper
+end
