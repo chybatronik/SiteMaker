@@ -11,4 +11,14 @@ class Site < ActiveRecord::Base
     end
 
   end
+
+  def path_for_site
+    File.join(File.join(ENV['PATH_SITES'], self.user_id.to_s), self.name)
+  end
+
+  def build
+    Dir.chdir(self.path_for_site) do
+      %x[jekyll build]
+    end
+  end
 end

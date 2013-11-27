@@ -14,3 +14,13 @@ ADMIN_NAME: First User
 ADMIN_EMAIL: user@example.com
 ADMIN_PASSWORD: changeme
 ROLES: [admin, user, VIP]
+DEV_DATABASE_NAME: site_maker_dev
+DEV_DATABASE_USERNAME: admin_userpics
+DEV_DATABASE_PASSWORD: PB8Nczn6B4c9nSYx
+TEST_DATABASE_NAME: site_maker_test
+TEST_DATABASE_USERNAME: admin_userpics
+TEST_DATABASE_PASSWORD: PB8Nczn6B4c9nSYx
+PROD_DATABASE_NAME: site_maker_prod
+PROD_DATABASE_USERNAME: admin_userpics
+PROD_DATABASE_PASSWORD: PB8Nczn6B4c9nSYx
+PATH_SITES: /home/ch/dev/ruby/SiteMaker/tmp/sites/
