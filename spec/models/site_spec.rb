@@ -11,6 +11,5 @@ describe Site do
     File.directory?(my_site.path_for_site).should be_true
     my_site.build
     File.directory?(File.join(my_site.path_for_site, "_site")).should be_true
-
   end
 end
