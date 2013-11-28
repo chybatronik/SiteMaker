@@ -9,6 +9,19 @@ class Site < ActiveRecord::Base
     Dir.chdir(site_dir_user_path) do
       %x[jekyll new #{self.dir_name_site}]
     end
+
+    #template
+  end
+  def generate_template
+    path_to_template = ENV['PATH_TEMPLATE']
+    erb_string = File.open(file_name).read
+        
+    #Converts erb to haml
+    haml_string = Haml::HTML.new(erb_string, :erb => true).render
+
+    #Writes the haml
+    f = File.new(haml_file_name, "w") 
+    f.write(haml_string)
   end
 
   def dir_name_site

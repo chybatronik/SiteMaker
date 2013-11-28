@@ -42,5 +42,4 @@ group :test do
   gem 'email_spec'
 end
 
-#gem "jekyll"
-gem 'ruhoh', "~> 2"
+gem "jekyll"
