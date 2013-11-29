@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'haml'
 
 class Site < ActiveRecord::Base
   belongs_to :user
@@ -11,16 +12,23 @@ class Site < ActiveRecord::Base
     end
 
     #template
+    self.generate_template "blog", "layout/default.html.haml", "_layouts/default.html"
+    self.generate_template "blog", "layout/post.html.haml", "_layouts/post.html"
+    self.generate_template "blog", "index.html.haml", "index.html"
   end
-  def generate_template
+
+  def generate_template name_templates, source_file_name, file_name
     path_to_template = ENV['PATH_TEMPLATE']
-    erb_string = File.open(file_name).read
-        
+    blog_path = File.join(path_to_template, name_templates)
+
+    default_template_path = File.join(blog_path,  source_file_name)
+    erb_string = File.open(default_template_path).read
+    #
     #Converts erb to haml
-    haml_string = Haml::HTML.new(erb_string, :erb => true).render
+    haml_string = Haml::Engine.new(erb_string, :erb => true).render
 
     #Writes the haml
-    f = File.new(haml_file_name, "w") 
+    f = File.new(File.join(self.path_for_site, file_name), "w") 
     f.write(haml_string)
   end
 
