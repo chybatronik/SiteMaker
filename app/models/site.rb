@@ -6,9 +6,12 @@ class Site < ActiveRecord::Base
 
   after_create do
     site_dir_user_path = File.join(ENV['PATH_SITES'], self.user_id.to_s)
-    FileUtils.mkdir_p site_dir_user_path
-    Dir.chdir(site_dir_user_path) do
-      %x[jekyll new #{self.dir_name_site}]
+    FileUtils.mkdir_p site_dir_user_path unless File.directory?(site_dir_user_path)
+
+    unless File.directory?(self.path_for_site)
+      Dir.chdir(site_dir_user_path) do
+        %x[jekyll new #{self.dir_name_site}]
+      end
     end
 
     #template

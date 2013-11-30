@@ -7,8 +7,12 @@
   %b Description:
   = @site.description
 %p
+  %b Type:
+  = @site.type_site
+
+%p
   %b User:
-  = @site.user_id
+  = @site.user
 
 = link_to 'Edit', edit_site_path(@site)
 \|

@@ -6,6 +6,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :sites
 
+  def to_s
+    self.email
+  end
+
   #after_create :assign_reader_role
 
   #private
