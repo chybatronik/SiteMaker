@@ -15,9 +15,11 @@ class Site < ActiveRecord::Base
     end
 
     #template
-    self.generate_template "blog", "layout/default.html.haml", "_layouts/default.html"
-    self.generate_template "blog", "layout/post.html.haml", "_layouts/post.html"
-    self.generate_template "blog", "index.html.haml", "index.html"
+    if self.type_site == "blog"
+      self.generate_template "blog", "layout/default.html.haml", "_layouts/default.html"
+      self.generate_template "blog", "layout/post.html.haml", "_layouts/post.html"
+      self.generate_template "blog", "index.html.haml", "index.html"
+    end
   end
 
   def generate_template name_templates, source_file_name, file_name
