@@ -43,6 +43,10 @@ class Site < ActiveRecord::Base
     f.close 
   end
 
+  def config
+    YAML.load_file(File.join(self.path_for_site, '_config.yml'))
+  end
+
   def write_config_blog_for_test_public
     path_to_template = ENV['PATH_TEMPLATE']
     blog_path = File.join(path_to_template, "blog")
