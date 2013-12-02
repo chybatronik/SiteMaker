@@ -20,9 +20,7 @@ describe Site do
 
   it "has written config for test public " do
     my_site = FactoryGirl.create :site 
-    p my_site.config
     my_site.config["safe"].should be_true
-
   end
 
   it "public site has baseurl for view" do
