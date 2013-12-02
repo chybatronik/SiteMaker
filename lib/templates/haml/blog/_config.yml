@@ -1,0 +1,6 @@
+name: Your New 
+markdown: redcarpet
+pygments: true
+safe:     true
+auto:     true
+server:   true

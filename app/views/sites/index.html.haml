@@ -5,6 +5,7 @@
     %th Name
     %th Description
     %th Type 
+    %th Url
     %th User
     %th
     %th
@@ -15,6 +16,7 @@
       %td= site.name
       %td= site.description
       %td= site.type_site
+      %td= link_to site.url_for_site, site.url_for_site
       %td= site.user
       %td= link_to 'Show', site
       %td= link_to 'Edit', edit_site_path(site)

@@ -6,15 +6,15 @@
         %title {{ page.title }}
         %meta{:content => "width=device-width", :name => "viewport"}
           / syntax highlighting CSS
-          %link{:href => "/css/syntax.css", :rel => "stylesheet"}
+          %link{:href => "{{ site.baseurl }}/css/syntax.css", :rel => "stylesheet"}
             / Custom CSS
-            %link{:href => "/css/main.css", :rel => "stylesheet"}
+            %link{:href => "{{ site.baseurl }}/css/main.css", :rel => "stylesheet"}
   %body
     .site
       .header
         %h1.title
-          %a{:href => "/"} {{ site.name }}
-        %a.extra{:href => "/"} home
+          %a{:href => "{{ site.baseurl }}"} {{ site.name }}
+        %a.extra{:href => "{{ site.baseurl }}"} home
       {{ content }}
       .footer
         .contact

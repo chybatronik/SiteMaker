@@ -1,5 +1,6 @@
 require 'fileutils'
 require 'haml'
+require 'yaml'
 
 class Site < ActiveRecord::Base
   belongs_to :user
@@ -19,7 +20,11 @@ class Site < ActiveRecord::Base
       self.generate_template "blog", "layout/default.html.haml", "_layouts/default.html"
       self.generate_template "blog", "layout/post.html.haml", "_layouts/post.html"
       self.generate_template "blog", "index.html.haml", "index.html"
+
+      self.write_config_blog_for_test_public
     end
+    self.build
+
   end
 
   def generate_template name_templates, source_file_name, file_name
@@ -35,19 +40,40 @@ class Site < ActiveRecord::Base
     #Writes the haml
     f = File.new(File.join(self.path_for_site, file_name), "w") 
     f.write(haml_string)
+    f.close 
+  end
+
+  def write_config_blog_for_test_public
+    path_to_template = ENV['PATH_TEMPLATE']
+    blog_path = File.join(path_to_template, "blog")
+    default_config = YAML.load_file(File.join(blog_path, '_config.yml'))
+
+    default_config['baseurl'] = self.url_for_site
+
+    File.open(File.join(self.path_for_site, "_config.yml"), 'w') {|f| f.write default_config.to_yaml } #Store
   end
 
   def dir_name_site
     self.name.split.join("_")
   end
 
+  def url_for_site
+    "/sites/#{self.user_id.to_s}/#{self.dir_name_site}"
+  end
+
   def path_for_site
     File.join(File.join(ENV['PATH_SITES'], self.user_id.to_s), self.dir_name_site)
+  end
+
+  def path_public_site
+    File.join(ENV['PATH_PUBLIC_SITES'], "#{self.user_id.to_s}/#{self.dir_name_site}")
   end
 
   def build
     Dir.chdir(self.path_for_site) do
       %x[jekyll build]
+      FileUtils.mkdir_p self.path_public_site
+      FileUtils.cp_r(Dir["#{File.join(self.path_for_site, "_site")}/*"], self.path_public_site)
     end
   end
 end
