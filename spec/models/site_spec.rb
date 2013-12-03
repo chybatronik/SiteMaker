@@ -32,7 +32,9 @@ describe Site do
 
   it "browse pages" do
     my_site = FactoryGirl.create :site 
-    my_site.browse_pages
-
+    my_site.browse_pages.length.should be_eql(1)
+    Page.all.length.should be_eql(1)
+    my_site.browse_pages.should be_eql(Page.all.to_a)
+    
   end
 end

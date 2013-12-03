@@ -4,6 +4,20 @@ require 'yaml'
 
 class Site < ActiveRecord::Base
   belongs_to :user
+  has_many :pages, dependent: :destroy
+
+  after_update do
+    #template
+    if self.type_site == "blog"
+      self.generate_template "blog", "layout/default.html.haml", "_layouts/default.html"
+      self.generate_template "blog", "layout/post.html.haml", "_layouts/post.html"
+      self.generate_template "blog", "index.html.haml", "index.html"
+
+      self.write_config_blog_for_test_public
+    end
+    self.browse_pages
+    self.build
+  end
 
   after_create do
     site_dir_user_path = File.join(ENV['PATH_SITES'], self.user_id.to_s)
@@ -23,6 +37,7 @@ class Site < ActiveRecord::Base
 
       self.write_config_blog_for_test_public
     end
+    self.browse_pages
     self.build
 
   end
@@ -86,9 +101,16 @@ class Site < ActiveRecord::Base
   end
 
   def browse_pages
+    Page.where(site_id: self.id).destroy_all 
+
+    list_pages = []
     Dir.chdir(self.path_for_site) do
       librbfiles = File.join("**", "**", "**.{md,markdown,textile}")
-      p Dir.glob(librbfiles)
+      name_files = Dir.glob(librbfiles)
+      name_files.each do |name_file|
+        list_pages << Page.create_from_file(name_file, self)
+      end
+      list_pages
     end
   end
 end
