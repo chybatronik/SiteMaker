@@ -1,0 +1,17 @@
+= simple_form_for(@page) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name_file
+    = f.input :layout
+    = f.input :permalink
+    = f.input :published
+    = f.input :categories
+    = f.input :tags
+    = f.input :title
+    = f.input :content
+    = f.input :date
+    = f.input :site_id
+
+  .form-actions
+    = f.button :submit

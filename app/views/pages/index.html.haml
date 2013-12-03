@@ -1,0 +1,37 @@
+%h1 Listing pages
+
+%table
+  %tr
+    %th Name file
+    %th Layout
+    %th Permalink
+    %th Published
+    %th Categories
+    %th Tags
+    %th Title
+    %th Content
+    %th Date
+    %th Site
+    %th
+    %th
+    %th
+
+  - @pages.each do |page|
+    %tr
+      %td= page.name_file
+      %td= page.layout
+      %td= page.permalink
+      %td= page.published
+      %td= page.categories
+      %td= page.tags
+      %td= page.title
+      %td= page.content
+      %td= page.date
+      %td= page.site_id
+      %td= link_to 'Show', page
+      %td= link_to 'Edit', edit_page_path(page)
+      %td= link_to 'Destroy', page, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Page', new_page_path

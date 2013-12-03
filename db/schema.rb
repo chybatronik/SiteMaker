@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131130093040) do
+ActiveRecord::Schema.define(version: 20131203075719) do
+
+  create_table "pages", force: true do |t|
+    t.string   "name_file"
+    t.string   "layout"
+    t.string   "permalink"
+    t.boolean  "published"
+    t.text     "categories"
+    t.text     "tags"
+    t.string   "title"
+    t.text     "content"
+    t.string   "date"
+    t.integer  "site_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "roles", force: true do |t|
     t.string   "name"

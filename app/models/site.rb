@@ -27,6 +27,10 @@ class Site < ActiveRecord::Base
 
   end
 
+  after_destroy do
+    FileUtils.rm_rf self.path_for_site 
+  end
+
   def generate_template name_templates, source_file_name, file_name
     path_to_template = ENV['PATH_TEMPLATE']
     blog_path = File.join(path_to_template, name_templates)
@@ -78,6 +82,13 @@ class Site < ActiveRecord::Base
       %x[jekyll build]
       FileUtils.mkdir_p self.path_public_site
       FileUtils.cp_r(Dir["#{File.join(self.path_for_site, "_site")}/*"], self.path_public_site)
+    end
+  end
+
+  def browse_pages
+    Dir.chdir(self.path_for_site) do
+      librbfiles = File.join("**", "**", "**.{md,markdown,textile}")
+      p Dir.glob(librbfiles)
     end
   end
 end

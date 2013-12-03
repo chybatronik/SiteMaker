@@ -29,4 +29,10 @@ describe Site do
     File.directory?(File.join(my_site.path_public_site, "css")).should be_true
     my_site.config['baseurl'].should be_eql(my_site.url_for_site)
   end
+
+  it "browse pages" do
+    my_site = FactoryGirl.create :site 
+    my_site.browse_pages
+
+  end
 end

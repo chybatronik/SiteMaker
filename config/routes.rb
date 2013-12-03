@@ -1,4 +1,6 @@
 SiteMaker::Application.routes.draw do
+  resources :pages
+
   resources :sites
 
   root :to => "home#index"
