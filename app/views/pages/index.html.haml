@@ -2,13 +2,12 @@
 
 %table.table
   %tr
-    %th Name file
+    %th Published
+    %th Title
     %th Layout
     %th Permalink
-    %th Published
     %th Categories
     %th Tags
-    %th Title
     %th Content
     %th Date
     %th Site
@@ -18,16 +17,15 @@
 
   - @pages.each do |page|
     %tr
-      %td= page.name_file
+      %td= page.published
+      %td= page.title
       %td= page.layout
       %td= page.permalink
-      %td= page.published
       %td= page.categories
       %td= page.tags
-      %td= page.title
-      %td= page.content
+      %td= truncate page.content
       %td= page.date
-      %td= page.site_id
+      %td= page.site
       %td= link_to 'Show', page
       %td= link_to 'Edit', edit_page_path(page)
       %td= link_to 'Destroy', page, :method => :delete, :data => { :confirm => 'Are you sure?' }

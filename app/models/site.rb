@@ -46,6 +46,10 @@ class Site < ActiveRecord::Base
     FileUtils.rm_rf self.path_for_site 
   end
 
+  def to_s
+    "#{type_site}::#{name}"
+  end
+
   def generate_template name_templates, source_file_name, file_name
     path_to_template = ENV['PATH_TEMPLATE']
     blog_path = File.join(path_to_template, name_templates)
