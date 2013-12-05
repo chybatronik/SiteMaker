@@ -21,12 +21,8 @@
           %p
             Your Name
             %br/
-            What You Are
-            %br/
-            you@example.com
+            {{ site.email}}
         .contact
           %p
-            %a{:href => "https://github.com/yourusername"} github.com/yourusername
-            %br/
-            %a{:href => "https://twitter.com/yourusername"} twitter.com/yourusername
+            %a{:href => "{{ site.github_name}}"} {{ site.github_name}}
             %br/

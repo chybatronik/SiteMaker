@@ -1,4 +1,4 @@
-= simple_form_for(@page) do |f|
+= simple_form_for(@page, :url => site_page_path(@page.site, @page)) do |f|
   = f.error_notification
 
   .form-inputs

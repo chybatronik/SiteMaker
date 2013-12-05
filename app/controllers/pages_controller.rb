@@ -15,6 +15,7 @@ class PagesController < ApplicationController
   # GET /pages/new
   def new
     @page = Page.new
+    @page.site_id = params[:site_id].to_i
   end
 
   # GET /pages/1/edit

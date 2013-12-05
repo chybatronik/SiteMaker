@@ -2,6 +2,6 @@
 
 = render 'form'
 
-= link_to 'Show', @page
+= link_to 'Show', site_page_path(@page.site, @page)
 \|
-= link_to 'Back', pages_path
+= link_to 'Back', site_pages_path(params[:site_id])
