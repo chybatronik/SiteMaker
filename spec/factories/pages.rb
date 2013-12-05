@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :page do
-    name_file "MyString"
+    name_file "1/2/3/4/5"
     layout "MyString"
     permalink "MyString"
     published false

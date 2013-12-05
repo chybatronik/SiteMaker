@@ -24,9 +24,17 @@ class Page < ActiveRecord::Base
       end
     end
     config_page = YAML.load(str_yml)
-    config_page['name_file'] = File.join(site.path_for_site, name_file)
+    config_page['name_file'] = name_file
     config_page['content'] = content
     config_page['site_id'] = site.id
     self.create config_page
+  end
+
+  def dir_name
+    File.dirname(self.name_file)
+  end
+
+  def basename
+    File.basename(self.name_file)
   end
 end

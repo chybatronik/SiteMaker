@@ -76,6 +76,8 @@ class Site < ActiveRecord::Base
     default_config = YAML.load_file(File.join(blog_path, '_config.yml'))
 
     default_config['baseurl'] = self.url_for_site
+    default_config['name'] = self.name
+    default_config['description'] = self.description
 
     File.open(File.join(self.path_for_site, "_config.yml"), 'w') {|f| f.write default_config.to_yaml } #Store
   end
