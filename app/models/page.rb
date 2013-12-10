@@ -1,6 +1,7 @@
 require "yaml"
 
 class Page < ActiveRecord::Base
+  belongs_to :directory
   belongs_to :site
 
   def self.create_from_file name_file, site

@@ -43,3 +43,4 @@ group :test do
 end
 
 gem "jekyll"
+gem 'ancestry'

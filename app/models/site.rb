@@ -4,6 +4,7 @@ require 'yaml'
 
 class Site < ActiveRecord::Base
   belongs_to :user
+  has_many :directories, dependent: :destroy
   has_many :pages, dependent: :destroy
 
   after_update do
